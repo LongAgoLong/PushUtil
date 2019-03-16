@@ -2,7 +2,7 @@
 [![](https://jitpack.io/v/LongAgoLong/PushUtil.svg)](https://jitpack.io/#LongAgoLong/PushUtil)
 # 使用方法
 ## 1.添加依赖
-```xml
+```java
         allprojects {
 		repositories {
 			...
@@ -34,4 +34,8 @@
         <meta-data
             android:name="JPUSH_MASTER_SECRET"
             android:value="leopush_xxx" />
+```
+## 2.调用api
+```java
+	OperatePush.getInstance(this).push()
 ```
