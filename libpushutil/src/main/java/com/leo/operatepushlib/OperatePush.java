@@ -107,18 +107,44 @@ public final class OperatePush {
                 .flatMap(pushResultEntity -> rxJpush(pushResultEntity, title, content, null, paramsMap));
     }
     
+    /**
+     * 单独的小米推送
+     *
+     * @param title         标题
+     * @param content       副标题
+     * @param paramsMap     扩展参数
+     * @param tag           标签
+     * @return
+     */
     public Observable<PushResultEntity> pushMI(@NonNull String title, @NonNull String content,
                                              @Nullable Map<String, String> paramsMap,
                                              @Nullable String tag) {
         return rxMiPush(new PushResultEntity(), title, content, tag, paramsMap);
     }
 
+    /**
+     * 单独的华为推送
+     *
+     * @param title         标题
+     * @param content       副标题
+     * @param paramsMap     扩展参数
+     * @param pushTokenList 需要推送的用户token
+     * @return
+     */
     public Observable<PushResultEntity> pushHuawei(@NonNull String title, @NonNull String content,
                                              @Nullable Map<String, String> paramsMap,
                                              @Nullable ArrayList<String> emuiPushTokens) {
         return rxHuaweiPush(new PushResultEntity(), emuiPushTokens, title, content, paramsMap);
     }
     
+    /** 单独的极光推送
+     *
+     * @param title         标题
+     * @param content       副标题
+     * @param paramsMap     扩展参数
+     * @param tag           标签
+     * @return
+     */
     public Observable<PushResultEntity> pushJpush(@NonNull String title, @NonNull String content,
                                              @Nullable Map<String, String> paramsMap,
                                              @Nullable String tag) {
