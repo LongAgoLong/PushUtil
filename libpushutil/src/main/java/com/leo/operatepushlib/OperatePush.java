@@ -106,7 +106,24 @@ public final class OperatePush {
                 .flatMap(pushResultEntity -> rxMiPush(pushResultEntity, title, content, null, paramsMap))
                 .flatMap(pushResultEntity -> rxJpush(pushResultEntity, title, content, null, paramsMap));
     }
+    
+    public Observable<PushResultEntity> pushMI(@NonNull String title, @NonNull String content,
+                                             @Nullable Map<String, String> paramsMap,
+                                             @Nullable String tag) {
+        return rxMiPush(new PushResultEntity(), title, content, tag, paramsMap);
+    }
 
+    public Observable<PushResultEntity> pushHuawei(@NonNull String title, @NonNull String content,
+                                             @Nullable Map<String, String> paramsMap,
+                                             @Nullable ArrayList<String> emuiPushTokens) {
+        return rxHuaweiPush(new PushResultEntity(), emuiPushTokens, title, content, paramsMap);
+    }
+    
+    public Observable<PushResultEntity> pushJpush(@NonNull String title, @NonNull String content,
+                                             @Nullable Map<String, String> paramsMap,
+                                             @Nullable String tag) {
+        return rxJpush(new PushResultEntity(), title, content, tag, paramsMap);
+    }
 
     /**
      * 华为推送
