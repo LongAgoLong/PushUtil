@@ -184,7 +184,7 @@ public final class OperatePush {
                     String msgBody = MessageFormat.format(
                             "grant_type=client_credentials&client_secret={0}&client_id={1}",
                             URLEncoder.encode(HUAWEI_APP_SECRET_KEY, "UTF-8"),
-                            OperateConfig.HUAWEI_APP_ID);
+                            HUAWEI_APP_ID);
                     Respond response = HttpUtil.httpPost(OperateConfig.HUAWEI_TOKEN_URL, msgBody,
                             15000, 15000);
                     if (response.getCode() == 200) {
@@ -243,7 +243,7 @@ public final class OperatePush {
                         URLEncoder.encode(payload.toString(), "UTF-8"));
 
                 String postUrl = OperateConfig.HUAWEI_API_URL + "?nsp_ctx=" + URLEncoder.encode(
-                        "{\"ver\":\"1\", \"appId\":\"" + OperateConfig.HUAWEI_APP_ID + "\"}",
+                        "{\"ver\":\"1\", \"appId\":\"" + HUAWEI_APP_ID + "\"}",
                         "UTF-8");
                 Respond respond = HttpUtil.httpPost(postUrl, postBody, 50000, 50000);
                 if (respond.getCode() == 200) {
