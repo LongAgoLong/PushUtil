@@ -128,7 +128,7 @@ public final class OperatePush {
      * @param title         标题
      * @param content       副标题
      * @param paramsMap     扩展参数
-     * @param pushTokenList 需要推送的用户token
+     * @param emuiPushTokens 需要推送的用户token
      * @return
      */
     public Observable<PushResultEntity> pushHuawei(@NonNull String title, @NonNull String content,
