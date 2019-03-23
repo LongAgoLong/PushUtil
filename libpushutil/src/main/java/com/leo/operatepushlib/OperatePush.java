@@ -58,8 +58,8 @@ public final class OperatePush {
     private String JPUSH_APP_KEY;
     private String JPUSH_MASTER_SECRET;
 
-    private static String accessToken;//下发通知消息的认证Token
-    private static long tokenExpiredTime;  //accessToken的过期时间
+    private String accessToken;//下发通知消息的认证Token
+    private long tokenExpiredTime;  //accessToken的过期时间
     private static final int singleNumber = 600;
 
     private OperatePush(Context context) {
