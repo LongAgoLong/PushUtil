@@ -90,7 +90,7 @@ public final class OperatePush {
 
     public Observable<PushResultEntity> push(@NonNull String title, @NonNull String content,
                                              @Nullable Map<String, String> paramsMap,
-                                             @Nullable ArrayList<String> emuiPushTokens,
+                                             @Nullable List<String> emuiPushTokens,
                                              @NonNull String tag) {
         PushResultEntity resultEntity = new PushResultEntity();
         return rxHuaweiPush(resultEntity, emuiPushTokens, title, content, paramsMap)
@@ -100,7 +100,7 @@ public final class OperatePush {
 
     public Observable<PushResultEntity> push(@NonNull String title, @NonNull String content,
                                              @Nullable Map<String, String> paramsMap,
-                                             @Nullable ArrayList<String> emuiPushTokens) {
+                                             @Nullable List<String> emuiPushTokens) {
         PushResultEntity resultEntity = new PushResultEntity();
         return rxHuaweiPush(resultEntity, emuiPushTokens, title, content, paramsMap)
                 .flatMap(pushResultEntity -> rxMiPush(pushResultEntity, title, content, null, paramsMap))
@@ -133,7 +133,7 @@ public final class OperatePush {
      */
     public Observable<PushResultEntity> pushHuawei(@NonNull String title, @NonNull String content,
                                              @Nullable Map<String, String> paramsMap,
-                                             @Nullable ArrayList<String> emuiPushTokens) {
+                                             @Nullable List<String> emuiPushTokens) {
         return rxHuaweiPush(new PushResultEntity(), emuiPushTokens, title, content, paramsMap);
     }
     
