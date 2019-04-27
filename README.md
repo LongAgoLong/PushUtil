@@ -11,9 +11,9 @@
 	}
 
     dependencies {
-	        implementation 'com.github.LongAgoLong:PushUtil:$jitpack-version$'
+	    implementation 'com.github.LongAgoLong:PushUtil:$jitpack-version$'
             implementation 'com.google.code.gson:gson:2.8.2'
-	        implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
+	    implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
             implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
             implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.2'
             implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
