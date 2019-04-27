@@ -41,6 +41,6 @@ dependencies {
     implementation files('libs/MiPush_SDK_Server_2_2_19.jar')
     implementation files('libs/slf4j-api-1.7.7.jar')
     implementation files('libs/slf4j-log4j12-1.7.7.jar')
-    api 'io.reactivex.rxjava2:rxjava:2.1.16'
-    implementation 'com.google.code.gson:gson:2.8.2'
+    compileOnly 'io.reactivex.rxjava2:rxjava:2.1.17'
+    compileOnly 'com.google.code.gson:gson:2.8.2'
 }

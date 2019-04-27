@@ -43,21 +43,20 @@ import io.reactivex.annotations.Nullable;
 public final class OperatePush {
     private static OperatePush operatePush;
     private String PACKAGE_NAME;
-    /*
+    /**
      * 小米
-     * */
+     */
     private String MI_APP_SECRET_KEY;
-    /*
-     * 华为
-     * */
-    private String HUAWEI_APP_ID;
-    private String HUAWEI_APP_SECRET_KEY;
-    /*
+    /**
      * 极光
-     * */
+     */
     private String JPUSH_APP_KEY;
     private String JPUSH_MASTER_SECRET;
-
+    /**
+     * 华为
+     */
+    private String HUAWEI_APP_ID;
+    private String HUAWEI_APP_SECRET_KEY;
     private String accessToken;//下发通知消息的认证Token
     private long tokenExpiredTime;  //accessToken的过期时间
     private static final int singleNumber = 600;
@@ -67,14 +66,14 @@ public final class OperatePush {
         PACKAGE_NAME = PACKAGE_NAME.replace("leopush_", "");
         MI_APP_SECRET_KEY = MetaValueUtil.getMetaValue(context, "MI_APP_SECRET_KEY");
         MI_APP_SECRET_KEY = MI_APP_SECRET_KEY.replace("leopush_", "");
-        HUAWEI_APP_ID = MetaValueUtil.getMetaValue(context, "HUAWEI_APP_ID");
-        HUAWEI_APP_ID = HUAWEI_APP_ID.replace("leopush_", "");
-        HUAWEI_APP_SECRET_KEY = MetaValueUtil.getMetaValue(context, "HUAWEI_APP_SECRET_KEY");
-        HUAWEI_APP_SECRET_KEY = HUAWEI_APP_SECRET_KEY.replace("leopush_", "");
         JPUSH_APP_KEY = MetaValueUtil.getMetaValue(context, "JPUSH_APP_KEY");
         JPUSH_APP_KEY = JPUSH_APP_KEY.replace("leopush_", "");
         JPUSH_MASTER_SECRET = MetaValueUtil.getMetaValue(context, "JPUSH_MASTER_SECRET");
         JPUSH_MASTER_SECRET = JPUSH_MASTER_SECRET.replace("leopush_", "");
+        HUAWEI_APP_ID = MetaValueUtil.getMetaValue(context, "HUAWEI_APP_ID");
+        HUAWEI_APP_ID = HUAWEI_APP_ID.replace("leopush_", "");
+        HUAWEI_APP_SECRET_KEY = MetaValueUtil.getMetaValue(context, "HUAWEI_APP_SECRET_KEY");
+        HUAWEI_APP_SECRET_KEY = HUAWEI_APP_SECRET_KEY.replace("leopush_", "");
     }
 
     public static OperatePush getInstance(Context context) {
@@ -88,6 +87,16 @@ public final class OperatePush {
         return operatePush;
     }
 
+    /**
+     * 三个推送平台一起推送
+     *
+     * @param title
+     * @param content
+     * @param paramsMap
+     * @param emuiPushTokens
+     * @param tag
+     * @return
+     */
     public Observable<PushResultEntity> push(@NonNull String title, @NonNull String content,
                                              @Nullable Map<String, String> paramsMap,
                                              @Nullable List<String> emuiPushTokens,
@@ -106,48 +115,49 @@ public final class OperatePush {
                 .flatMap(pushResultEntity -> rxMiPush(pushResultEntity, title, content, null, paramsMap))
                 .flatMap(pushResultEntity -> rxJpush(pushResultEntity, title, content, null, paramsMap));
     }
-    
+
     /**
      * 单独的小米推送
      *
-     * @param title         标题
-     * @param content       副标题
-     * @param paramsMap     扩展参数
-     * @param tag           标签
+     * @param title     标题
+     * @param content   副标题
+     * @param paramsMap 扩展参数
+     * @param tag       标签
      * @return
      */
     public Observable<PushResultEntity> pushMI(@NonNull String title, @NonNull String content,
-                                             @Nullable Map<String, String> paramsMap,
-                                             @Nullable String tag) {
+                                               @Nullable Map<String, String> paramsMap,
+                                               @Nullable String tag) {
         return rxMiPush(new PushResultEntity(), title, content, tag, paramsMap);
     }
 
     /**
      * 单独的华为推送
      *
-     * @param title         标题
-     * @param content       副标题
-     * @param paramsMap     扩展参数
+     * @param title          标题
+     * @param content        副标题
+     * @param paramsMap      扩展参数
      * @param emuiPushTokens 需要推送的用户token
      * @return
      */
     public Observable<PushResultEntity> pushHuawei(@NonNull String title, @NonNull String content,
-                                             @Nullable Map<String, String> paramsMap,
-                                             @Nullable List<String> emuiPushTokens) {
+                                                   @Nullable Map<String, String> paramsMap,
+                                                   @Nullable List<String> emuiPushTokens) {
         return rxHuaweiPush(new PushResultEntity(), emuiPushTokens, title, content, paramsMap);
     }
-    
-    /** 单独的极光推送
+
+    /**
+     * 单独的极光推送
      *
-     * @param title         标题
-     * @param content       副标题
-     * @param paramsMap     扩展参数
-     * @param tag           标签
+     * @param title     标题
+     * @param content   副标题
+     * @param paramsMap 扩展参数
+     * @param tag       标签
      * @return
      */
     public Observable<PushResultEntity> pushJpush(@NonNull String title, @NonNull String content,
-                                             @Nullable Map<String, String> paramsMap,
-                                             @Nullable String tag) {
+                                                  @Nullable Map<String, String> paramsMap,
+                                                  @Nullable String tag) {
         return rxJpush(new PushResultEntity(), title, content, tag, paramsMap);
     }
 

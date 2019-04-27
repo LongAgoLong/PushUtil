@@ -3,15 +3,20 @@
 # 使用方法
 ## 1.添加依赖
 ```java
-        allprojects {
+    allprojects {
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
 		}
 	}
 
-        dependencies {
+    dependencies {
 	        implementation 'com.github.LongAgoLong:PushUtil:$jitpack-version$'
+            implementation 'com.google.code.gson:gson:2.8.2'
+	        implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
+            implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+            implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.2'
+            implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
 	}
 ```
 ## 2.在清单文件中配置以下必须参数（必须以leopush_开头）
